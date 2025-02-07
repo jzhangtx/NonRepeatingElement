@@ -6,24 +6,16 @@
 
 int FindNonRepeatingElement(const std::vector<int>& arr)
 {
-    int num = 0;
-    int count = 0;
-    for (auto i : arr)
+    for (size_t i = 1; i < arr.size(); i += 2)
     {
-        if (i != num)
-        {
-            if (count == 1)
-                return num;
-            num = i;
-            count = 0;
-        }
-        ++count;
+        if (arr[i] != arr[i - 1])
+            return arr[i - 1];
     }
 
-    if (count == 1)
-        return num;
+    if (arr.size()%2 == 1)
+        return arr[arr.size()-1];
 
-    throw std::runtime_error("Non repeating Element not found!");
+    return -1;
 }
 
 int main()
